@@ -1,0 +1,1 @@
+# actividad-patrones-dise-o-01-06-26
