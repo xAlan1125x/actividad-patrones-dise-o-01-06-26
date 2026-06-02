@@ -1,0 +1,7 @@
+# language: es
+Característica: Pruebas de Principios SOLID con Cucumber
+
+  Escenario: Verificar el Principio de Inversión de Dependencias (DIP) en el Interruptor
+    Dado que tengo una Lampara Inteligente lista para conectar
+    Cuando asocio la lampara al Interruptor y lo acciono con "on"
+    Entonces el dispositivo debería encenderse sin problemas

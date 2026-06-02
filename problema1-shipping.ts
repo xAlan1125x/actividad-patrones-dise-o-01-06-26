@@ -1,25 +1,23 @@
-// Problema 1: El Sistema de Envíos Todopoderoso (SRP y OCP)
-
-class Order {
+export class Order {
     constructor(public id: string, public totalAmount: number) {}
 }
 
 // Interfaces para abstraer comportamientos (OCP)
-interface ShippingMethod {
+export interface ShippingMethod {
     calculateCost(): number;
     getName(): string;
 }
 
-interface PaymentMethod {
+export interface PaymentMethod {
     processPayment(amount: number): void;
 }
 
-interface Notifier {
+export interface Notifier {
     sendNotification(order: Order): void;
 }
 
 // Implementaciones de métodos de envío
-class StandardShipping implements ShippingMethod {
+export class StandardShipping implements ShippingMethod {
     calculateCost(): number {
         return 10;
     }
@@ -29,7 +27,7 @@ class StandardShipping implements ShippingMethod {
     }
 }
 
-class ExpressShipping implements ShippingMethod {
+export class ExpressShipping implements ShippingMethod {
     calculateCost(): number {
         return 25;
     }
@@ -39,7 +37,7 @@ class ExpressShipping implements ShippingMethod {
     }
 }
 
-class DroneShipping implements ShippingMethod {
+export class DroneShipping implements ShippingMethod {
     calculateCost(): number {
         return 35;
     }
@@ -50,27 +48,27 @@ class DroneShipping implements ShippingMethod {
 }
 
 // Implementaciones de métodos de pago
-class PayPalPayment implements PaymentMethod {
+export class PayPalPayment implements PaymentMethod {
     processPayment(amount: number): void {
         console.log(`Procesando pago de $${amount} vía PayPal...`);
     }
 }
 
-class CreditCardPayment implements PaymentMethod {
+export class CreditCardPayment implements PaymentMethod {
     processPayment(amount: number): void {
         console.log(`Cargando $${amount} a la tarjeta de crédito...`);
     }
 }
 
 // Implementación de notificador
-class EmailNotifier implements Notifier {
+export class EmailNotifier implements Notifier {
     sendNotification(order: Order): void {
         console.log(`Email enviado: Su pedido ${order.id} ha sido procesado.`);
     }
 }
 
 // Servicio de pedidos refactorizado (SRP)
-class OrderService {
+export class OrderService {
     private shippingCalculator: ShippingMethod;
     private paymentProcessor: PaymentMethod;
     private notifier: Notifier;
@@ -95,12 +93,3 @@ class OrderService {
         this.notifier.sendNotification(order);
     }
 }
-
-// Ejemplo de uso
-const order = new Order("ORD-123", 100);
-const standardShipping = new StandardShipping();
-const payPal = new PayPalPayment();
-const emailNotifier = new EmailNotifier();
-
-const orderService = new OrderService(standardShipping, payPal, emailNotifier);
-orderService.processOrder(order);

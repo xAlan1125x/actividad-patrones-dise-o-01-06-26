@@ -3,14 +3,21 @@
   "version": "1.0.0",
   "description": "SOLID principles activity",
   "main": "index.ts",
-  "scripts": {
-    "start": "ts-node index.ts"
+"scripts": {
+    "start": "ts-node index.ts",
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node node_modules/@cucumber/cucumber/bin/cucumber-js"
   },
-  "keywords": ["solid", "typescript"],
+  "keywords": [
+    "solid",
+    "typescript"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "typescript": "^5.0.0",
-    "ts-node": "^10.9.0"
+    "@cucumber/cucumber": "^12.9.0",
+    "@types/node": "^25.9.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.0.0"
   }
 }

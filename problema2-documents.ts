@@ -1,32 +1,30 @@
-// Problema 2: El Procesador de Documentos Rebelde (LSP y ISP)
-
 // Interfaces segregadas (ISP)
-interface Openable {
+export interface Openable {
     open(): void;
 }
 
-interface Editable {
+export interface Editable {
     edit(): void;
 }
 
-interface Savable {
+export interface Savable {
     save(): void;
 }
 
 // Documento editable completo
-class WordDocument implements Openable, Editable, Savable {
+export class WordDocument implements Openable, Editable, Savable {
     open() { console.log("Abriendo documento Word..."); }
     edit() { console.log("Editando texto..."); }
     save() { console.log("Guardando cambios en disco..."); }
 }
 
 // Documento de solo lectura
-class ReadOnlyPDFDocument implements Openable {
+export class ReadOnlyPDFDocument implements Openable {
     open() { console.log("Abriendo PDF protegido..."); }
 }
 
 // Cliente que usa solo la funcionalidad necesaria
-class DocumentProcessor {
+export class DocumentProcessor {
     processEditableDocument(doc: Openable & Editable & Savable): void {
         doc.open();
         doc.edit();
@@ -37,14 +35,3 @@ class DocumentProcessor {
         doc.open();
     }
 }
-
-// Ejemplo de uso
-const wordDoc = new WordDocument();
-const pdfDoc = new ReadOnlyPDFDocument();
-const processor = new DocumentProcessor();
-
-console.log("\nProcesando documento Word:");
-processor.processEditableDocument(wordDoc);
-
-console.log("\nProcesando PDF protegido:");
-processor.processReadOnlyDocument(pdfDoc);
